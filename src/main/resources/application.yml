@@ -1,0 +1,24 @@
+#配置服务器端口号
+server:
+  port: 9000
+  #配置数据源
+spring:
+  datasource:
+      ##数据库位置
+    url: jdbc:mysql://localhost:3306/flowsync_simple?serverTimezone=UTC
+    username: root
+    password: qwertyuiop07
+    #数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    #配置MyBatis-Plus
+mybatis-plus:
+  configuration:
+    #开启日志功能
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #开启MySQL与Java的明明自动转换功能
+    map-underscore-to-camel-case: true
+
+# 阿里云千问 DashScope API 配置
+dashscope:
+  api-key: sk-ws-H.EHHEXYE.BbKk.MEQCIC41q_JkrypSfvc8DpCIawk9OIQzRMG4lkuJhjymHTgnAiBAj1EnpvZXnnj8FvA3aU-GZtKW_uZJolhHg1gip_NuYA
