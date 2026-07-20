@@ -1,5 +1,6 @@
 package com.ustb.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ Lombok提供了一组注解
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("project_info")
 public class ProjectInfo {
     private Long id;
     private String name;
