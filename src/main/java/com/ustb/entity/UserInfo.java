@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("sys_user")
-public class User {
+public class UserInfo {
     private Long id;
     private String username;
     private String password;

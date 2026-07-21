@@ -1,9 +1,9 @@
 package com.ustb.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.ustb.entity.User;
+import com.ustb.entity.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserInfoMapper extends BaseMapper<UserInfo> {
 }
