@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -41,6 +43,9 @@ public class AIService {
 
     public AIService() {
         this.restTemplate = new RestTemplate();
+        // 设置 UTF-8 编码，解决千问 API 返回中文乱码问题
+        this.restTemplate.getMessageConverters()
+                .add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         this.objectMapper = new ObjectMapper();
     }
 
