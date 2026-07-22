@@ -1,5 +1,7 @@
 package com.ustb.controller;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.ustb.common.Result;
 import com.ustb.entity.TaskLog;
 import com.ustb.service.TaskLogService;
