@@ -7,7 +7,7 @@ spring:
       ##数据库位置
     url: jdbc:mysql://localhost:3306/flowsync_simple?serverTimezone=UTC
     username: root
-    password: root
+    password: qwertyuiop07
     #数据库驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
 
