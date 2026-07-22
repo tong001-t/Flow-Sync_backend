@@ -22,14 +22,11 @@ public class AuthController {
         String username = params.get("username");
         String password = params.get("password");
 
-        UserInfo user = userInfoService.findByUsername(username);
+        // BCrypt 密码验证 + 旧明文自动升级
+        UserInfo user = userInfoService.login(username, password);
         if (user == null) {
-            return new Result(101, "用户名不存在");
+            return new Result(101, "用户名或密码错误");
         }
-        if (!user.getPassword().equals(password)) {
-            return new Result(101, "密码错误");
-        }
-        user.setPassword(null);
         return new Result(100, user);
     }
 }

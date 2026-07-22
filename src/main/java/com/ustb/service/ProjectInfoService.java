@@ -54,4 +54,13 @@ public class ProjectInfoService {
         Wrapper<ProjectInfo> wrapper=new QueryWrapper<>();
         return projectInfoMapper.selectList(wrapper);
     }
+
+    /**
+     * 数据隔离：只返回指定用户负责的项目
+     */
+    public List<ProjectInfo> findListByOwner(Long ownerId) {
+        QueryWrapper<ProjectInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq("owner_id", ownerId);
+        return projectInfoMapper.selectList(wrapper);
+    }
 }

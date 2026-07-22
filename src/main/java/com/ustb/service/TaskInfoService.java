@@ -38,4 +38,13 @@ public class TaskInfoService {
         Wrapper<TaskInfo> wrapper = new QueryWrapper<>();
         return taskInfoMapper.selectList(wrapper);
     }
+
+    /**
+     * 数据隔离：只返回指定用户负责的任务
+     */
+    public List<TaskInfo> findListByAssignee(Long assigneeId) {
+        QueryWrapper<TaskInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq("assignee_id", assigneeId);
+        return taskInfoMapper.selectList(wrapper);
+    }
 }

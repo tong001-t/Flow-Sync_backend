@@ -77,10 +77,15 @@ public class ProjectInfoController {
     }
     /*按所有数据列表*/
     @ResponseBody
-    //@RequestMapping("list")
     @GetMapping("list")
-    public List<ProjectInfo> list(){
+    public List<ProjectInfo> list(
+            @RequestParam(value = "currentUserId", required = false) Long currentUserId,
+            @RequestParam(value = "role", required = false) String role) {
         System.out.println("list()方法被执行了");
+        // 数据隔离：成员只能看到自己负责的项目
+        if (currentUserId != null && !"负责人".equals(role)) {
+            return projectInfoService.findListByOwner(currentUserId);
+        }
         return projectInfoService.findList();
     }
 }

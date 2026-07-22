@@ -55,7 +55,13 @@ public class TaskInfoController {
 
     @GetMapping("list")
     @ResponseBody
-    public List<TaskInfo> list() {
+    public List<TaskInfo> list(
+            @RequestParam(value = "currentUserId", required = false) Long currentUserId,
+            @RequestParam(value = "role", required = false) String role) {
+        // 数据隔离：成员只能看到分配给自己和已创建的任务
+        if (currentUserId != null && !"负责人".equals(role)) {
+            return taskInfoService.findListByAssignee(currentUserId);
+        }
         return taskInfoService.findList();
     }
 }
