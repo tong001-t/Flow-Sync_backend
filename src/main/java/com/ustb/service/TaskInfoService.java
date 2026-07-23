@@ -39,6 +39,14 @@ public class TaskInfoService {
         return taskInfoMapper.selectList(wrapper);
     }
 
+    // 2. 带参：查询指定项目的下级任务
+    public List<TaskInfo> findList(Long projectId) {
+        QueryWrapper<TaskInfo> wrapper = new QueryWrapper<>();
+        // 加上 project_id 等于 projectId 的条件
+        wrapper.eq("project_id", projectId);
+        return taskInfoMapper.selectList(wrapper);
+    }
+
     /**
      * 数据隔离：只返回指定用户负责的任务
      */
