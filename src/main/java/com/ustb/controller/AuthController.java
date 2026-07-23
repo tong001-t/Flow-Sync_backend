@@ -29,4 +29,25 @@ public class AuthController {
         }
         return new Result(100, user);
     }
+
+    @PostMapping("register")
+    @ResponseBody
+    public Result register(@RequestBody Map<String, String> params) {
+        String username = params.get("username");
+        String password = params.get("password");
+        String realName = params.get("realName");
+
+        if (username == null || username.trim().isEmpty()) {
+            return new Result(101, "用户名不能为空");
+        }
+        if (password == null || password.length() < 4) {
+            return new Result(101, "密码至少4位");
+        }
+
+        String error = userInfoService.register(username.trim(), password, realName);
+        if (error != null) {
+            return new Result(101, error);
+        }
+        return new Result(100, "注册成功");
+    }
 }

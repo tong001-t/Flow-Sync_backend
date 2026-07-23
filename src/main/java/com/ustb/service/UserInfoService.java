@@ -61,6 +61,26 @@ public class UserInfoService {
         return null;
     }
 
+    /**
+     * 注册新用户（BCrypt 加密密码）
+     * @return null 表示成功，非 null 表示错误消息
+     */
+    public String register(String username, String password, String realName) {
+        QueryWrapper<UserInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq("username", username);
+        if (userInfoMapper.selectOne(wrapper) != null) {
+            return "用户名已存在";
+        }
+        UserInfo user = new UserInfo();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setRealName(realName != null && !realName.isEmpty() ? realName : username);
+        user.setRole("成员");
+        user.setCreateTime(new java.util.Date());
+        userInfoMapper.insert(user);
+        return null;
+    }
+
     public UserInfo findById(Long id) {
         return userInfoMapper.selectById(id);
     }
